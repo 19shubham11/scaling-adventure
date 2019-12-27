@@ -15,8 +15,8 @@ if (isMainThread) {
 		// create 2 threads, 1 to calculate primes from 0 to x/2, other from x/2 to x
 		// should have used a loop here to scale
 
-		threads.add(new Worker(__filename, { workerData: { index: 0, start: 0, end: max/2 }}))
-		threads.add(new Worker(__filename, { workerData: { index: 1, start: max/2, end: max }}))
+		threads.add(new Worker(__filename, { workerData: { start: 0, end: max/2 }}))
+		threads.add(new Worker(__filename, { workerData: { start: max/2, end: max }}))
 
 
 		for (const worker of threads) {
@@ -43,7 +43,8 @@ if (isMainThread) {
 
 } else {
 	// every time the thread is called, with the given values return primes
-	console.log('thread~', workerData.index)
+	const { threadId } = require('worker_threads')
+	console.log(`~!Thread ${threadId}`)
 	const primes = syncOperation(workerData.start, workerData.end)
   parentPort.postMessage(primes)
 }
