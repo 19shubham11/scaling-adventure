@@ -1,4 +1,4 @@
-const {syncOperation} = require('./primes')
+const { syncOperation } = require('./primes')
 
 // single thread ~8 seconds
 console.log('Single threaded!')
