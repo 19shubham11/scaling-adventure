@@ -9,5 +9,3 @@ console.log(primes.length)
 console.timeEnd('start')
 
 console.log('Hey, I am also here! doing some I/O')
-
-
